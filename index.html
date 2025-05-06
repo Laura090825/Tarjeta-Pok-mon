@@ -6,7 +6,7 @@
   <title>Tarjeta Pokémon</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
- 
+  
     body {
      background: linear-gradient(135deg, #ff007f, #6a1b9a);
      font-family: 'Orbitron', sans-serif;
@@ -17,20 +17,19 @@
      padding: 20px;
      min-height: 100vh;
      margin: 0;
-     /* overflow: hidden; Eliminado para permitir el scroll vertical */
-     overflow: auto; /* Mejor opción para mostrar scroll solo cuando sea necesario */
+     overflow: auto;
     }
- 
+  
     .tarjeta {
      border-radius: 20px;
-     padding: 25px;
+     padding: 21px;
      max-width: 1100px;
      width: 100%;
      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
      backdrop-filter: blur(10px);
      display: grid;
-     grid-template-columns: 1fr 1fr;
-     gap: 20px;
+     grid-template-columns: 1.5fr 1fr; /* Ajuste de las columnas para más espacio a la izquierda */
+     gap: -5px;
      background: rgba(255, 255, 255, 0.2);
      transition: background 0.5s;
      font-size: 1.2rem;
@@ -38,44 +37,45 @@
      border-image: linear-gradient(45deg, #ff007f, #6a1b9a) 1;
      box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
     }
- 
+  
     .columna1 {
      display: flex;
      flex-direction: column;
      align-items: center;
-     margin-top: 90px; /* Margen superior para empujar hacia abajo */
+     margin-top: 70px;
     }
- 
+  
     .columna1 img {
-     width: 240px;
-     height: 240px;
+     width: 300px; /* Agrandar la imagen */
+     height: 300px; /* Agrandar la imagen */
      object-fit: contain;
      border-radius: 12px;
      border: 2px solid rgba(255, 255, 255, 0.4);
      transition: transform 0.3s;
-     margin-top: 20px; /* Margen superior para darle espacio */
+     margin-top: 30px; /* Dar más espacio superior */
     }
- 
+  
     .columna1 h1 {
-     margin: 20px 0 0 0; /* Aumento del margen superior */
-     font-size: 2rem;
+     margin: 30px 0 0 0; /* Dar más espacio superior */
+     font-size: 2.8rem; /* Agrandar el nombre */
      text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
     }
- 
+  
     .columna1 p {
-     margin: 10px 0; /* Aumento del margen entre los párrafos */
+     font-size: 1.8rem; /* Agrandar el texto de número, altura y peso */
+     margin: 15px 0; /* Dar más espacio vertical */
     }
- 
+  
     .columna2 {
      display: flex;
      flex-direction: column;
      align-items: stretch;
     }
- 
+  
     .info p {
      margin: 10px 0;
     }
- 
+  
     .tipo, .debilidad {
      display: inline-block;
      padding: 8px 15px;
@@ -86,82 +86,96 @@
      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
      text-transform: uppercase;
     }
- 
+  
     .barra-estadistica {
      background: #ddd;
      border-radius: 15px;
      overflow: hidden;
      margin: 5px 0;
     }
- 
+  
     .barra {
      height: 15px;
      background: #ff007f;
     }
- 
+  
     h3 {
      margin-top: 20px;
      color: #ff007f;
      text-align: center;
      text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
     }
- 
+  
     .tarjeta {
      transition: background-color 1s ease;
     }
     @media (max-width: 768px) {
      .tarjeta {
-      grid-template-columns: 1fr; /* Una sola columna */
+      grid-template-columns: 1fr;
       padding: 15px;
-      width: auto; /* Permitir que la tarjeta crezca horizontalmente si es necesario */
+      width: auto;
      }
- 
+  
      .columna1 {
-      align-items: center; /* Alinear a la izquierda */
+      align-items: center;
       margin-top: 20px;
-      margin-right: 20px; /* Dar espacio para el scroll */
+      margin-right: 0;
      }
- 
+  
      .columna1 img {
-      width: 180px;
-      height: 180px;
+      width: 220px; /* Agrandar imagen en móviles */
+      height: 220px; /* Agrandar imagen en móviles */
      }
- 
+  
      .columna1 h1 {
-      font-size: 1.8rem;
-      text-align: left;
+      font-size: 2rem; /* Agrandar nombre en móviles */
+      text-align: center;
      }
- 
+  
      .columna1 p {
-      text-align: left;
-      margin: 5px 0;
+      font-size: 1.2rem; /* Agrandar texto en móviles */
+      text-align: center;
+      margin: 10px 0;
      }
- 
+  
      .columna2 {
-      align-items: center; /* Alinear a la izquierda */
+      align-items: stretch;
      }
- 
+  
      .tipo, .debilidad {
       padding: 6px 10px;
       font-size: 0.9rem;
       margin: 3px;
      }
- 
+  
      h3 {
       font-size: 1.2rem;
       margin-top: 15px;
-      text-align: left;
+      text-align: center;
      }
     }
- 
- /* Para pantallas medianas (tablets)  */
- @media (min-width: 769px) and (max-width: 992px) {
-   .tarjeta {
-    font-size: 1.1rem;
-    padding: 20px;
-    grid-template-columns: 1fr 1fr;
+  
+   /* Para pantallas medianas (tablets)  */
+   @media (min-width: 769px) and (max-width: 992px) {
+    .tarjeta {
+     font-size: 1.1rem;
+     padding: 20px;
+     grid-template-columns: 1.3fr 1fr; /* Ajuste para tablets */
+    }
+  
+    .columna1 img {
+     width: 260px; /* Agrandar imagen en tablets */
+     height: 260px; /* Agrandar imagen en tablets */
+    }
+  
+    .columna1 h1 {
+     font-size: 2.2rem; /* Agrandar nombre en tablets */
+    }
+  
+    .columna1 p {
+     font-size: 1.3rem; /* Agrandar texto en tablets */
+    }
    }
- }
    </style>
 </head>
 <body>
