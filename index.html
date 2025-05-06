@@ -6,110 +6,163 @@
   <title>Tarjeta Pokémon</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
-
+ 
     body {
-      background: linear-gradient(135deg, #ff007f, #6a1b9a);
-      font-family: 'Orbitron', sans-serif;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      min-height: 100vh;
-      margin: 0;
-      overflow: hidden;
+     background: linear-gradient(135deg, #ff007f, #6a1b9a);
+     font-family: 'Orbitron', sans-serif;
+     color: white;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     padding: 20px;
+     min-height: 100vh;
+     margin: 0;
+     /* overflow: hidden; Eliminado para permitir el scroll vertical */
+     overflow: auto; /* Mejor opción para mostrar scroll solo cuando sea necesario */
     }
-
+ 
     .tarjeta {
-      border-radius: 20px;
-      padding: 25px;
-      max-width: 1100px;
-      width: 100%;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(10px);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      background: rgba(255, 255, 255, 0.2);
-      transition: background 0.5s;
-      font-size: 1.2rem;
-      border: 2px solid transparent;
-      border-image: linear-gradient(45deg, #ff007f, #6a1b9a) 1;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+     border-radius: 20px;
+     padding: 25px;
+     max-width: 1100px;
+     width: 100%;
+     box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+     backdrop-filter: blur(10px);
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 20px;
+     background: rgba(255, 255, 255, 0.2);
+     transition: background 0.5s;
+     font-size: 1.2rem;
+     border: 2px solid transparent;
+     border-image: linear-gradient(45deg, #ff007f, #6a1b9a) 1;
+     box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
     }
-
+ 
     .columna1 {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 90px; /* Margen superior para empujar hacia abajo */
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     margin-top: 90px; /* Margen superior para empujar hacia abajo */
     }
-
+ 
     .columna1 img {
-      width: 240px;
-      height: 240px;
-      object-fit: contain;
-      border-radius: 12px;
-      border: 2px solid rgba(255, 255, 255, 0.4);
-      transition: transform 0.3s;
-      margin-top: 20px; /* Margen superior para darle espacio */
+     width: 240px;
+     height: 240px;
+     object-fit: contain;
+     border-radius: 12px;
+     border: 2px solid rgba(255, 255, 255, 0.4);
+     transition: transform 0.3s;
+     margin-top: 20px; /* Margen superior para darle espacio */
     }
-
+ 
     .columna1 h1 {
-      margin: 20px 0 0 0; /* Aumento del margen superior */
-      font-size: 2rem;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+     margin: 20px 0 0 0; /* Aumento del margen superior */
+     font-size: 2rem;
+     text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
     }
-
+ 
     .columna1 p {
-      margin: 10px 0; /* Aumento del margen entre los párrafos */
+     margin: 10px 0; /* Aumento del margen entre los párrafos */
     }
-
+ 
     .columna2 {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
+     display: flex;
+     flex-direction: column;
+     align-items: stretch;
     }
-
+ 
     .info p {
-      margin: 10px 0;
+     margin: 10px 0;
     }
-
+ 
     .tipo, .debilidad {
-      display: inline-block;
-      padding: 8px 15px;
-      border-radius: 20px;
-      margin: 5px;
-      background-color: rgba(0,0,0,0.4);
-      font-size: 1.1rem;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      text-transform: uppercase;
+     display: inline-block;
+     padding: 8px 15px;
+     border-radius: 20px;
+     margin: 5px;
+     background-color: rgba(0,0,0,0.4);
+     font-size: 1.1rem;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+     text-transform: uppercase;
     }
-
+ 
     .barra-estadistica {
-      background: #ddd;
-      border-radius: 15px;
-      overflow: hidden;
-      margin: 5px 0;
+     background: #ddd;
+     border-radius: 15px;
+     overflow: hidden;
+     margin: 5px 0;
     }
-
+ 
     .barra {
-      height: 15px;
-      background: #ff007f;
+     height: 15px;
+     background: #ff007f;
     }
-
+ 
     h3 {
-      margin-top: 20px;
-      color: #ff007f;
-      text-align: center;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+     margin-top: 20px;
+     color: #ff007f;
+     text-align: center;
+     text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
     }
-
+ 
     .tarjeta {
-      transition: background-color 1s ease;
+     transition: background-color 1s ease;
     }
-
-  </style>
+    @media (max-width: 768px) {
+     .tarjeta {
+      grid-template-columns: 1fr; /* Una sola columna */
+      padding: 15px;
+      width: auto; /* Permitir que la tarjeta crezca horizontalmente si es necesario */
+     }
+ 
+     .columna1 {
+      align-items: center; /* Alinear a la izquierda */
+      margin-top: 20px;
+      margin-right: 20px; /* Dar espacio para el scroll */
+     }
+ 
+     .columna1 img {
+      width: 180px;
+      height: 180px;
+     }
+ 
+     .columna1 h1 {
+      font-size: 1.8rem;
+      text-align: left;
+     }
+ 
+     .columna1 p {
+      text-align: left;
+      margin: 5px 0;
+     }
+ 
+     .columna2 {
+      align-items: center; /* Alinear a la izquierda */
+     }
+ 
+     .tipo, .debilidad {
+      padding: 6px 10px;
+      font-size: 0.9rem;
+      margin: 3px;
+     }
+ 
+     h3 {
+      font-size: 1.2rem;
+      margin-top: 15px;
+      text-align: left;
+     }
+    }
+ 
+ /* Para pantallas medianas (tablets)  */
+ @media (min-width: 769px) and (max-width: 992px) {
+   .tarjeta {
+    font-size: 1.1rem;
+    padding: 20px;
+    grid-template-columns: 1fr 1fr;
+   }
+ }
+   </style>
 </head>
 <body>
    
