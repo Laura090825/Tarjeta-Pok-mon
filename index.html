@@ -28,11 +28,11 @@
      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
      backdrop-filter: blur(10px);
      display: grid;
-     grid-template-columns: 1.5fr 1fr; /* Ajuste de las columnas para más espacio a la izquierda */
-     gap: -5px;
+     grid-template-columns: 0.8fr 1fr; /* Ajuste de las columnas para más espacio a la izquierda */
+     gap: -50px; 
      background: rgba(255, 255, 255, 0.2);
      transition: background 0.5s;
-     font-size: 1.2rem;
+     font-size: 1.4rem;
      border: 2px solid transparent;
      border-image: linear-gradient(45deg, #ff007f, #6a1b9a) 1;
      box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
@@ -46,24 +46,24 @@
     }
   
     .columna1 img {
-     width: 300px; /* Agrandar la imagen */
-     height: 300px; /* Agrandar la imagen */
+     width: 300px;
+     height: 300px;
      object-fit: contain;
      border-radius: 12px;
      border: 2px solid rgba(255, 255, 255, 0.4);
      transition: transform 0.3s;
-     margin-top: 30px; /* Dar más espacio superior */
+     margin-top: 30px;
     }
   
     .columna1 h1 {
-     margin: 30px 0 0 0; /* Dar más espacio superior */
-     font-size: 2.8rem; /* Agrandar el nombre */
+     margin: 30px 0 0 0;
+     font-size: 2.8rem;
      text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
     }
   
     .columna1 p {
-     font-size: 1.8rem; /* Agrandar el texto de número, altura y peso */
-     margin: 15px 0; /* Dar más espacio vertical */
+     font-size: 1.8rem;
+     margin: 15px 0;
     }
   
     .columna2 {
@@ -82,7 +82,7 @@
      border-radius: 20px;
      margin: 5px;
      background-color: rgba(0,0,0,0.4);
-     font-size: 1.1rem;
+     font-size: 1.2rem;
      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
      text-transform: uppercase;
     }
@@ -114,6 +114,7 @@
       grid-template-columns: 1fr;
       padding: 15px;
       width: auto;
+      gap: 0; 
      }
   
      .columna1 {
@@ -123,17 +124,17 @@
      }
   
      .columna1 img {
-      width: 220px; /* Agrandar imagen en móviles */
-      height: 220px; /* Agrandar imagen en móviles */
+      width: 220px;
+      height: 220px;
      }
   
      .columna1 h1 {
-      font-size: 2rem; /* Agrandar nombre en móviles */
+      font-size: 2rem;
       text-align: center;
      }
   
      .columna1 p {
-      font-size: 1.2rem; /* Agrandar texto en móviles */
+      font-size: 1.2rem;
       text-align: center;
       margin: 10px 0;
      }
@@ -160,20 +161,21 @@
     .tarjeta {
      font-size: 1.1rem;
      padding: 20px;
-     grid-template-columns: 1.3fr 1fr; /* Ajuste para tablets */
+     grid-template-columns: 1.3fr 1fr;
+     gap: -10px; /* Ajustar el gap para tablets también si es necesario */
     }
   
     .columna1 img {
-     width: 260px; /* Agrandar imagen en tablets */
-     height: 260px; /* Agrandar imagen en tablets */
+     width: 260px;
+     height: 260px;
     }
   
     .columna1 h1 {
-     font-size: 2.2rem; /* Agrandar nombre en tablets */
+     font-size: 2.2rem;
     }
   
     .columna1 p {
-     font-size: 1.3rem; /* Agrandar texto en tablets */
+     font-size: 1.3rem;
     }
    }
    </style>
