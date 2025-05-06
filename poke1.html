@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tarjeta Pokémon</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+    body {
+      background: linear-gradient(135deg, #ff007f, #6a1b9a);
+      font-family: 'Orbitron', sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .tarjeta {
+      border-radius: 20px;
+      padding: 25px;
+      max-width: 1100px;
+      width: 100%;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      transition: background 0.5s;
+      font-size: 1.2rem;
+      border: 2px solid transparent;
+      border-image: linear-gradient(45deg, #ff007f, #6a1b9a) 1;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    }
+
+    .columna1 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 90px; /* Margen superior para empujar hacia abajo */
+    }
+
+    .columna1 img {
+      width: 240px;
+      height: 240px;
+      object-fit: contain;
+      border-radius: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      transition: transform 0.3s;
+      margin-top: 20px; /* Margen superior para darle espacio */
+    }
+
+    .columna1 h1 {
+      margin: 20px 0 0 0; /* Aumento del margen superior */
+      font-size: 2rem;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    }
+
+    .columna1 p {
+      margin: 10px 0; /* Aumento del margen entre los párrafos */
+    }
+
+    .columna2 {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .info p {
+      margin: 10px 0;
+    }
+
+    .tipo, .debilidad {
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: 20px;
+      margin: 5px;
+      background-color: rgba(0,0,0,0.4);
+      font-size: 1.1rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      text-transform: uppercase;
+    }
+
+    .barra-estadistica {
+      background: #ddd;
+      border-radius: 15px;
+      overflow: hidden;
+      margin: 5px 0;
+    }
+
+    .barra {
+      height: 15px;
+      background: #ff007f;
+    }
+
+    h3 {
+      margin-top: 20px;
+      color: #ff007f;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    }
+
+    .tarjeta {
+      transition: background-color 1s ease;
+    }
+
+  </style>
+</head>
+<body>
+   
+     <div class="tarjeta" id="tarjeta">
+    <div class="columna1">
+      <h1 id="nombre"></h1>
+      <p id="numero"></p>
+      <img id="imagen" alt="Imagen del Pokémon"/>
+      <p id="altura"></p>
+      <p id="peso"></p>
+</div>
+    <div class="columna2">
+      <p><strong>Tipos:</strong> <span id="tipos"></span></p>
+      <p><strong>Debilidades:</strong> <span id="debilidades"></span></p>
+      <div id="estadisticas"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const coloresTipos = {
+      normal: '#A8A878',
+      fire: '#F08030',
+      water: '#6890F0',
+      electric: '#F8D030',
+      grass: '#78C850',
+      ice: '#98D8D8',
+      fighting: '#C03028',
+      poison: '#A040A0',
+      ground: '#E0C068',
+      flying: '#A890F0',
+      psychic: '#F85888',
+      bug: '#A8B820',
+      rock: '#B8A038',
+      ghost: '#705898',
+      dragon: '#7038F8',
+      dark: '#705848',
+      steel: '#B8B8D0',
+      fairy: '#EE99AC'
+    };
+
+    async function cargarPokemon(id) {
+      try {
+        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+        const data = res.data;
+
+        document.getElementById("nombre").textContent = data.name.toUpperCase();
+        document.getElementById("numero").textContent = `#${data.id}`;
+        document.getElementById("imagen").src = data.sprites.other['official-artwork'].front_default;
+
+        // Tipos
+        const tipos = data.types.map(t => t.type.name.toLowerCase());
+        document.getElementById("tipos").innerHTML = tipos.map(t => `<span class="tipo">${t.toUpperCase()}</span>`).join('');
+
+        // Cambiar color de la tarjeta según el primer tipo
+        const tipoPrincipal = tipos[0];
+        const colorFondo = coloresTipos[tipoPrincipal] || '#222';
+        document.getElementById("tarjeta").style.background = colorFondo;
+
+        // Altura y peso
+        document.getElementById("altura").textContent = `Altura: ${data.height / 10} m`;
+        document.getElementById("peso").textContent = `Peso: ${data.weight / 10} kg`;
+
+        // Estadísticas
+        const statsDiv = document.getElementById("estadisticas");
+        statsDiv.innerHTML = "<h3>Estadísticas</h3>";
+        data.stats.forEach(stat => {
+          statsDiv.innerHTML += `
+            <p>${stat.stat.name.toUpperCase()} (${stat.base_stat})</p>
+            <div class="barra-estadistica">
+              <div class="barra" style="width:${(stat.base_stat / 255) * 100}%"></div>
+            </div>`;
+        });
+
+        // Debilidades
+        const debilidades = new Set();
+        for (let tipo of data.types) {
+          const tipoRes = await axios.get(tipo.type.url);
+          tipoRes.data.damage_relations.double_damage_from.forEach(d => debilidades.add(d.name.toUpperCase()));
+        }
+        document.getElementById("debilidades").innerHTML = [...debilidades].map(d => `<span class="debilidad">${d}</span>`).join('');
+      } catch (e) {
+        document.querySelector(".tarjeta").innerHTML = "<p>Error al cargar Pokémon.</p>";
+        console.error(e);
+      }
+    }
+
+    const idAleatorio = Math.floor(Math.random() * 151) + 1;
+    cargarPokemon(idAleatorio);
+  </script>
+</body>
+</html>
